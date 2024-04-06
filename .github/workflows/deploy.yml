@@ -10,7 +10,11 @@ jobs:
     steps:
       - name: "Build the Docker Image"
         run: docker build -t frontdoor:latest .
+      - name: "Tag the Docker Image with the Git Tag"
+        run: docker tag frontend:latest 891377095569.dkr.ecr.eu-west-1.amazonaws.com/frontdoor:${{github.ref_name}}
+      - name: "Push the Release Version Tag Docker Image to the ECR Repository"
+        run: docker push 891377095569.dkr.ecr.eu-west-1.amazonaws.com/frontdoor:${{github.ref_name}}
       - name: "Tag the Docker Image for Publishing to the ECR Repository"
         run: docker tag frontend:latest 891377095569.dkr.ecr.eu-west-1.amazonaws.com/frontdoor:latest
-      - name: "Push the Docker Image to the ECR Repository"
+      - name: "Push the Latest Docker Tag to the ECR Repository"
         run: docker push 891377095569.dkr.ecr.eu-west-1.amazonaws.com/frontdoor:latest
