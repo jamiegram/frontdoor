@@ -1,7 +1,7 @@
 on:
   release: 
     types: 
-      - created
+      - published
 
 jobs:
   BuildImage:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Login to AWS
-        uses: aws-actions/configure-aws-credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::891377095569:role/GithubActionsDeployment
       - name: "Login to Docker"
