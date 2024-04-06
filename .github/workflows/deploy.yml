@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: Production
+    permissions:
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
